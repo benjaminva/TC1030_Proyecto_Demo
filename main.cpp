@@ -10,10 +10,9 @@
 * empleado diferente.
 */
 
-//Bibliotecas
-#include <iostream>   //para imprimir.
-#include "Empleado.h" //bibliotecas con objetos de mi proyecto.
-#include "Empresa.h"
+#include <iostream>   // para imprimir.
+#include "empleado.h" // bibliotecas con objetos de mi proyecto.
+#include "empresa.h"
 
 using namespace std;
 

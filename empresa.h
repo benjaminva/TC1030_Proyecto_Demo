@@ -10,16 +10,16 @@
 * y es parte del proyecto Nómina.
 */
 
-
 #ifndef EMPRESA_H_
 #define EMPRESA_H_
+
 #include <string>
 #include <iostream>
 #include <sstream>
+#include "empleado.h" //biblioteca con mis objetos a usar
 
 using namespace std;
 
-#include "Empleado.h"
 const int MAX = 1000; //constante de tamaño de arreglos
 
 class Empresa {
@@ -44,11 +44,10 @@ class Empresa {
         double calc_paga_hacienda();
         double calc_pago_total();
         void agrega_asalariado(string nombre, double salario);
-        void agrega_por_hora(string nombre, double horas, double salario);
-        void agrega_practicante(string nombre, double horas, double salario);
+        void agrega_por_hora(string nombre, int horas, double salario);
+        void agrega_practicante(string nombre, int horas, double salario);
 
 };
-
 
 /**
  * crea_ejemplos genera objetos en Empleados[]
@@ -178,12 +177,12 @@ double Empresa::calc_paga_hacienda(){
  * @param
  * @return double con la suma de todos los pagos a empleados
  */
-double Empresa::cal_pago_total(){
+double Empresa::calc_pago_total(){
 
-    if(nomida > 0)
+    if(nomina > 0)
       return calc_paga_empleados();
     else
-      return 0;
+      return 0.0;
 }
 
 /**
