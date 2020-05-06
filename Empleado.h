@@ -11,9 +11,7 @@ A01704696
 #include <string>
 #include <sstream>
 
-
 using namespace std;
-
 
 //Declaracion de clase empleado que es abstracta
 class Empleado {
@@ -25,8 +23,7 @@ class Empleado {
         string tipo;
 
     //Declaro los métodos que va a tener el objeto
-    public :
-
+    public:
         Empleado(): id(0),nombre(""),tipo(""){}; //constructor por defualt
         Empleado(int id_num, string nom, string tip):
           id(id_num), nombre(nom), tipo(tip){};
@@ -34,7 +31,7 @@ class Empleado {
         int get_id() { return id; }
         string get_nombre() { return nombre; }
         string get_tipo() { return tipo; }
-        virtual double pago_mensual() = 0;  //metodo abstracto será sobreescrito
+        virtual double pago_mensual() = 0;  //método abstracto será sobreescrito
         virtual string to_string() = 0;
 };
 
@@ -58,7 +55,14 @@ class Asalariado: public Empleado{
         string to_string();
 };
 
-//Metodo to_string que imprime los valores del objeto
+/**
+ * to_string convierte a atributos a string.
+ *
+ * concatena todos los valores de los atributos en un string para ser impreso
+ *
+ * @param
+ * @return string con los valores y texto concatenado.
+ */
 string Asalariado::to_string(){
 
     stringstream aux;
@@ -83,12 +87,20 @@ class PorHora: public Empleado{
         PorHora():Empleado(0,"","por hora"){};
         PorHora (int id, string nombre, double horas, double pago):
           Empleado(id,nombre,"por hora"), horas_t(horas), pago_por_h(pago){};
+
         double pago_mensual() { return horas_t * pago_por_h; }
         string to_string();
 
 };
 
-//Metodo to_string que imprime los valores del objeto
+/**
+ * to_string convierte a atributos a string.
+ *
+ * concatena todos los valores de los atributos en un string para ser impreso
+ *
+ * @param
+ * @return string con los valores y texto concatenado.
+ */
 string PorHora::to_string(){
 
     stringstream aux;
@@ -119,7 +131,14 @@ class Practicante: public Empleado{
         string to_string();
 };
 
-//Metodo to_string que imprime los valores del objeto
+/**
+ * to_string convierte a atributos a string.
+ *
+ * concatena todos los valores de los atributos en un string para ser impreso
+ *
+ * @param
+ * @return string con los valores y texto concatenado.
+ */
 string Practicante::to_string(){
 
     stringstream aux;

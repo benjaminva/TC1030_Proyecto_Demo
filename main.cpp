@@ -1,26 +1,21 @@
 /*
-Datos
-Proyecto Nómina
-Samuel Octavio González Azpeitia
-A01704696
-16/10/2019
-*/
-
-
-/*
-Descripción este es un proyecto demo para la clase de Pensamiento
- Computacional Orientado a Objetos. Es un programa que captura
- diferentes tipos de empleados con sus respectivos sueldos, y nos
- permite calcular la nómina para cada tipo de empleado diferente.
+* Proyecto Nómina main
+* Samuel Octavio González Azpeitia
+* A01704696
+* 16/10/2019
+*
+* Este es un proyecto demo para la clase TC1030 Programación Orientado a
+* Objetos. Es un programa que captura diferentes tipos de empleados con sus
+* respectivos sueldos, y nos permite calcular la nómina para cada tipo de
+* empleado diferente.
 */
 
 //Bibliotecas
 #include <iostream>   //para imprimir.
-#include "Empleado.h" //donde estan los objetos de mi proyecto.
+#include "Empleado.h" //bibliotecas con objetos de mi proyecto.
 #include "Empresa.h"
 
 using namespace std;
-
 
 int main(int argc, char* argv[]){
 

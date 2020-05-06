@@ -1,3 +1,16 @@
+/*
+* Proyecto Nómina clase Empresa
+* Samuel Octavio González Azpeitia
+* A01704696
+* 16/10/2019
+*
+* Esta clase defina objeto de tipo Empresa que contiene todas las operaciones
+* para hacer altas de empleados y para calcular sus salarios y lo que se usaría
+* en la nómina, esta clase es utilizadas por la función principal del prgrama
+* y es parte del proyecto Nómina.
+*/
+
+
 #ifndef EMPRESA_H_
 #define EMPRESA_H_
 #include <string>
@@ -11,20 +24,14 @@ const int MAX = 1000; //constante de tamaño de arreglos
 
 class Empresa {
 
-/*
-Declara las variables de instancia
-Arreglo de Empleados
-Identificador de Nomina
-*/
+
+    //Declaro las variables privadas de instancia
     private:
 
         Empleado *emp[MAX];  //se define como apuntador para usar polimorfismo
         int nomina;
 
-/*
-Métodos:
-Costructor por default y los diferentes metodos que empleara.
-*/
+    //Declaro constructor por default y metodos públicos.
     public:
 
         Empresa(): nomina(0){}; //constructor por defualt
@@ -42,10 +49,18 @@ Costructor por default y los diferentes metodos que empleara.
 
 };
 
-/*
- Utiliza el arreglo de tipo Empleados.
- Llena el arreglo con ejemplos de cada tipo de empleado
-*/
+
+/**
+ * crea_ejemplos genera objetos en Empleados[]
+ *
+ * genera objetos de tipo Asalariado PorHora y Practicante y los
+ * guarda en la varibale de instancia en emp[] (arreglo de empleados)
+ * para poder hacer pruebas. No usar esta función si se va a usar el programa
+ * en producción, ya que los datos son falsos.
+ *
+ * @param
+ * @return
+ */
 void Empresa::crea_ejemplos(){
 
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
@@ -67,11 +82,15 @@ void Empresa::crea_ejemplos(){
   nomina++;
 }
 
-/*
-Utiliza el arreglo emp y el número de nómina.
-Recorre todo el arreglo imprimiendo cada uno de los objetos.
-*/
-
+/**
+ * muestra_empleados imprime empleados
+ *
+ * utiliza el arreglo emp[] y el número de nómina, para recorre todo el
+ * arreglo imprimiendo cada uno de los objetos con su método to_string().
+ *
+ * @param
+ * @return
+ */
 void Empresa::muestra_empleados(){
 
   //Ciclo que recorre el arreglo e imprime cada objeto.
@@ -79,13 +98,16 @@ void Empresa::muestra_empleados(){
 		  cout << emp[i]->to_string();
 }
 
-/*
-Recibe: string tipo
-Utiliza el arreglo emp y el número de nómina.
-Recorre todo el arreglo imprimiendo cada uno de los objetos  que coinciden
-con el string tipo ("asalariado, por hora o practicante").
-*/
-
+/**
+ * muestra_empleados imprime empleados que coinciden con tipo
+ *
+ * utiliza el arreglo emp[] y el número de nómina, para recorre todo el
+ * arreglo imprimiendo cada uno de los objetos  que coinciden con el
+ * string tipo ("asalariado, por hora o practicante").
+ *
+ * @param string tipo debe ser: 'asalariado', 'por hora' o 'practicante'
+ * @return
+ */
 void Empresa::muestra_empleados(string tipo){
 
   //Ciclo que recorre el arreglo e imprime cada objeto.
@@ -95,11 +117,15 @@ void Empresa::muestra_empleados(string tipo){
   }
 }
 
-/*
-Utiliza el arreglo emp y el número de nómina.
-Acumula todo los pagos mensaules de loe empleados
-devuelve: double total.
-*/
+/**
+ * calc_paga_empleados suma la paga total de todos los empleados
+ *
+ * utiliza el arreglo emp[] y el número de nómina, para recorre todo el
+ * arreglo acumulando el pago mensual de todos los emleados.
+ *
+ * @param
+ * @return double con la suma de todos los pagos a empleados
+ */
 double Empresa::calc_paga_empleados(){
 
     double total=0;
@@ -108,13 +134,16 @@ double Empresa::calc_paga_empleados(){
     return total;
 }
 
-/*
-Recibe: string tipo
-Utiliza el arreglo emp y el número de nómina.
-Acumula todo los pagos mensaules de los empleados cuyo atributo ->tipo
-coincide con el string recibido "tipo"
-devuelve: double total.
-*/
+/**
+ * calc_paga_empleados suma la paga total de todos los empleados de un tipo
+ *
+ * utiliza el arreglo emp[] y el número de nómina, para recorre todo el
+ * arreglo acumulando el pago mensual de todos los emleados, cuyo string
+ * get_tipo() coincida con el tipo recibido como parámentro.
+ *
+ * @param string tipo debe ser: 'asalariado', 'por hora' o 'practicante'
+ * @return double con la suma de todos los pagos a empleados
+ */
 double Empresa::calc_paga_empleados(string tipo){
 
     int total=0;
@@ -125,29 +154,48 @@ double Empresa::calc_paga_empleados(string tipo){
 	  return total;
 }
 
-/*
-Suma el pago a empleados y asalaridos para hacienda
-devuelve: duble total
-*/
+/**
+ * calc_paga_empleados suma la paga total de todos los empleados fiscales
+ *
+ * utiliza el arreglo emp[] y el número de nómina, para recorre todo el
+ * arreglo acumulando el pago mensual de todos los empleados fiscales:
+ * que son de tipo Asalariado y PorHora.
+ *
+ * @param
+ * @return double con la suma de todos los pagos a empleados
+ */
 double Empresa::calc_paga_hacienda(){
 
 		return calc_paga_empleados("asalariado") + calc_paga_empleados("por hora");
 }
 
-/*
-manda a llamar calc_paga_empleados
-devuelve: double total
-*/
+/**
+ * calc_pago_total suma la paga total de todos los empleados
+ *
+ * verifica que haya empleados antes devolver la suma de sus salarios, incluye
+ * practicantes como Empleados
+ *
+ * @param
+ * @return double con la suma de todos los pagos a empleados
+ */
 double Empresa::cal_pago_total(){
 
-    return calc_paga_empleados();
-
+    if(nomida > 0)
+      return calc_paga_empleados();
+    else
+      return 0;
 }
 
-/*
-Recibe string nombre y double salario.
-Crea un nuevo objeto tipo Asalariado y lo agrega a emp
-*/
+/**
+ * agrega_asalariado crea un objeto Asalariado y lo agrega a
+ * arreglo de empleados
+ *
+ * crea un objeto Asalariado y lo agrega a arreglo de empleados usando como
+ * indice el número de nómina, el cuál después incrementa en 1.
+ *
+ * @param string nombre del empleado y  double salario.
+ * @return
+ */
 void Empresa::agrega_asalariado(string nombre, double salario){
 
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
@@ -156,10 +204,16 @@ void Empresa::agrega_asalariado(string nombre, double salario){
 
 }
 
-/*
-Recibe string nombre, int horas y double salario.
-Crea un nuevo objeto tipo PorHora y lo agrega a emp
-*/
+/**
+ * agrega_por_hora crea un objeto PorHora y lo agrega a
+ * arreglo de empleados
+ *
+ * crea un objeto PorHora y lo agrega a arreglo de empleados usando como
+ * indice el número de nómina, el cuál después incrementa en 1.
+ *
+ * @param string nombre del empleado, int horas y double salario.
+ * @return
+ */
 void Empresa::agrega_por_hora(string nombre, int horas, double salario){
 
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
@@ -167,11 +221,18 @@ void Empresa::agrega_por_hora(string nombre, int horas, double salario){
   nomina++;
 }
 
-/*
-Recibe string nombre, int horas y double salario.
-Crea un nuevo objeto tipo Practicante y lo agrega a emp
-*/
+/**
+ * agrega_practicante crea un objeto Practicante y lo agrega a
+ * arreglo de empleados
+ *
+ * crea un objeto Practicante y lo agrega a arreglo de empleados usando como
+ * indice el número de nómina, el cuál después incrementa en 1.
+ *
+ * @param string nombre del empleado, int horas y double salario.
+ * @return
+ */
 void Empresa::agrega_practicante(string nombre, int horas, double salario){
+
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
   emp[nomina] = new Practicante(nomina, nombre, horas, salario);
   nomina++;
