@@ -1,8 +1,12 @@
 /*
-Proyecto Nómina
-Samuel Octavio González Azpeitia
-A01704696
-16/10/2019
+*
+* Proyecto Nómina clase Empresa
+* Samuel Octavio González Azpeitia
+* A01704696
+* 16/10/2019
+* versio : 2
+* Esta clase defina objeto de tipo Empleado que contiene las clases heredadas
+* Asalariado, PorHora y Practicante.
 */
 
 #ifndef EMPLEADO_H_

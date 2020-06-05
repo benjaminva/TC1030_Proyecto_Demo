@@ -1,9 +1,10 @@
 /*
+*
 * Proyecto Nómina clase Empresa
 * Samuel Octavio González Azpeitia
 * A01704696
 * 16/10/2019
-*
+* versio : 2
 * Esta clase defina objeto de tipo Empresa que contiene todas las operaciones
 * para hacer altas de empleados y para calcular sus salarios y lo que se usaría
 * en la nómina, esta clase es utilizadas por la función principal del prgrama
@@ -94,7 +95,7 @@ void Empresa::muestra_empleados(){
 
   //Ciclo que recorre el arreglo e imprime cada objeto.
 	for(int i=0; i<nomina ;i++)
-		  cout << emp[i]->to_string();
+    cout << emp[i]->to_string();
 }
 
 /**
@@ -129,7 +130,7 @@ double Empresa::calc_paga_empleados(){
 
     double total=0;
     for(int i=0; i<nomina; i++)
-        total = total + emp[i]->pago_mensual();
+      total = total + emp[i]->pago_mensual();
     return total;
 }
 
@@ -148,7 +149,7 @@ double Empresa::calc_paga_empleados(string tipo){
     int total=0;
     for(int i=0; i<nomina ;i++){
       if(emp[i]->get_tipo() == tipo)
-  	      total = total + emp[i]->pago_mensual();
+  	    total = total + emp[i]->pago_mensual();
     }
 	  return total;
 }
