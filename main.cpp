@@ -29,15 +29,15 @@ int main(int argc, char* argv[]){
 
   cout<< "test \n\n";
   empresa.muestra_empleados("asalariado");
-	t = empresa.calc_paga_empleados();
+  t = empresa.calc_paga_empleados();
   cout << "pago empleados " << t << endl;
   t = empresa.calc_paga_hacienda();
   cout << "pago hacienda " << t << endl;
-	empresa.agrega_asalariado("Johnny", 20032);
+  empresa.agrega_asalariado("Johnny", 20032);
   empresa.muestra_empleados("asalariado");
-	empresa.agrega_por_hora("Veronica", 170, 100000);
+  empresa.agrega_por_hora("Veronica", 170, 100000);
   empresa.muestra_empleados("por hora");
-	empresa.agrega_practicante("Benjamin", 40, 3000);
+  empresa.agrega_practicante("Benjamin", 40, 3000);
   empresa.muestra_empleados("practicante");
   cout<< "test \n\n";
 }
