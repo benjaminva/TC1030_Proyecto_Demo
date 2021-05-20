@@ -1,22 +1,25 @@
 /*
-*
-* Proyecto Nómina clase Empresa
-* Samuel Octavio González Azpeitia
-* A01704696
-* 16/10/2019
-* versio : 2
-* Esta clase defina objeto de tipo Empresa que contiene todas las operaciones
-* para hacer altas de empleados y para calcular sus salarios y lo que se usaría
-* en la nómina, esta clase es utilizadas por la función principal del prgrama
-* y es parte del proyecto Nómina.
-*/
+ *
+ * Proyecto Nómina clase Empresa
+ * Samuel Octavio González Azpeitia
+ * A01704696
+ * 16/10/2019
+ * versio : 2
+ * Esta clase defina objeto de tipo Empresa que contiene todas las operaciones
+ * para hacer altas de empleados y para calcular sus salarios y lo que se usaría
+ * en la nómina, esta clase es utilizadas por la función principal del prgrama
+ * y es parte del proyecto Nómina.
+ */
 
 #ifndef EMPRESA_H_
 #define EMPRESA_H_
 
 #include <string>
+
 #include <iostream>
+
 #include <sstream>
+
 #include "empleado.h" //biblioteca con mis objetos a usar
 
 using namespace std;
@@ -25,28 +28,27 @@ const int MAX = 1000; //constante de tamaño de arreglos
 
 class Empresa {
 
+  //Declaro las variables privadas de instancia
+  private:
 
-    //Declaro las variables privadas de instancia
-    private:
+    Empleado * emp[MAX]; //se define como apuntador para usar polimorfismo
+  int nomina;
 
-        Empleado *emp[MAX];  //se define como apuntador para usar polimorfismo
-        int nomina;
+  //Declaro constructor por default y metodos públicos.
+  public:
 
-    //Declaro constructor por default y metodos públicos.
-    public:
+    Empresa(): nomina(0) {}; //constructor por defualt
 
-        Empresa(): nomina(0){}; //constructor por defualt
-
-        void crea_ejemplos();
-        void muestra_empleados();
-        void muestra_empleados(string tipo);
-        double calc_paga_empleados();
-        double calc_paga_empleados(string tipo);
-        double calc_paga_hacienda();
-        double calc_pago_total();
-        void agrega_asalariado(string nombre, double salario);
-        void agrega_por_hora(string nombre, int horas, double salario);
-        void agrega_practicante(string nombre, int horas, double salario);
+  void crea_ejemplos();
+  void muestra_empleados();
+  void muestra_empleados(string tipo);
+  double calc_paga_empleados();
+  double calc_paga_empleados(string tipo);
+  double calc_paga_hacienda();
+  double calc_pago_total();
+  void agrega_asalariado(string nombre, double salario);
+  void agrega_por_hora(string nombre, int horas, double salario);
+  void agrega_practicante(string nombre, int horas, double salario);
 
 };
 
@@ -61,7 +63,7 @@ class Empresa {
  * @param
  * @return
  */
-void Empresa::crea_ejemplos(){
+void Empresa::crea_ejemplos() {
 
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
   emp[nomina] = new Asalariado(nomina, "Fernando", 2000);
@@ -74,7 +76,7 @@ void Empresa::crea_ejemplos(){
   nomina++;
   emp[nomina] = new PorHora(nomina, "Felipe", 20, 650);
   nomina++;
-	emp[nomina] = new Practicante(nomina, "María", 10, 200);
+  emp[nomina] = new Practicante(nomina, "María", 10, 200);
   nomina++;
   emp[nomina] = new Practicante(nomina, "Ramon", 15, 200);
   nomina++;
@@ -91,11 +93,11 @@ void Empresa::crea_ejemplos(){
  * @param
  * @return
  */
-void Empresa::muestra_empleados(){
+void Empresa::muestra_empleados() {
 
   //Ciclo que recorre el arreglo e imprime cada objeto.
-	for(int i=0; i<nomina ;i++)
-    cout << emp[i]->to_string();
+  for (int i = 0; i < nomina; i++)
+    cout << emp[i] -> to_string();
 }
 
 /**
@@ -108,12 +110,12 @@ void Empresa::muestra_empleados(){
  * @param string tipo debe ser: 'asalariado', 'por hora' o 'practicante'
  * @return
  */
-void Empresa::muestra_empleados(string tipo){
+void Empresa::muestra_empleados(string tipo) {
 
   //Ciclo que recorre el arreglo e imprime cada objeto.
-	for(int i=0; i<nomina ;i++){
-    if(emp[i]->get_tipo() == tipo)
-		  cout << emp[i]->to_string();
+  for (int i = 0; i < nomina; i++) {
+    if (emp[i] -> get_tipo() == tipo)
+      cout << emp[i] -> to_string();
   }
 }
 
@@ -126,12 +128,12 @@ void Empresa::muestra_empleados(string tipo){
  * @param
  * @return double con la suma de todos los pagos a empleados
  */
-double Empresa::calc_paga_empleados(){
+double Empresa::calc_paga_empleados() {
 
-    double total=0;
-    for(int i=0; i<nomina; i++)
-      total = total + emp[i]->pago_mensual();
-    return total;
+  double total = 0;
+  for (int i = 0; i < nomina; i++)
+    total = total + emp[i] -> pago_mensual();
+  return total;
 }
 
 /**
@@ -144,14 +146,14 @@ double Empresa::calc_paga_empleados(){
  * @param string tipo debe ser: 'asalariado', 'por hora' o 'practicante'
  * @return double con la suma de todos los pagos a empleados
  */
-double Empresa::calc_paga_empleados(string tipo){
+double Empresa::calc_paga_empleados(string tipo) {
 
-    int total=0;
-    for(int i=0; i<nomina ;i++){
-      if(emp[i]->get_tipo() == tipo)
-  	    total = total + emp[i]->pago_mensual();
-    }
-	  return total;
+  int total = 0;
+  for (int i = 0; i < nomina; i++) {
+    if (emp[i] -> get_tipo() == tipo)
+      total = total + emp[i] -> pago_mensual();
+  }
+  return total;
 }
 
 /**
@@ -164,9 +166,9 @@ double Empresa::calc_paga_empleados(string tipo){
  * @param
  * @return double con la suma de todos los pagos a empleados
  */
-double Empresa::calc_paga_hacienda(){
+double Empresa::calc_paga_hacienda() {
 
-		return calc_paga_empleados("asalariado") + calc_paga_empleados("por hora");
+  return calc_paga_empleados("asalariado") + calc_paga_empleados("por hora");
 }
 
 /**
@@ -178,12 +180,12 @@ double Empresa::calc_paga_hacienda(){
  * @param
  * @return double con la suma de todos los pagos a empleados
  */
-double Empresa::calc_pago_total(){
+double Empresa::calc_pago_total() {
 
-    if(nomina > 0)
-      return calc_paga_empleados();
-    else
-      return 0.0;
+  if (nomina > 0)
+    return calc_paga_empleados();
+  else
+    return 0.0;
 }
 
 /**
@@ -196,10 +198,10 @@ double Empresa::calc_pago_total(){
  * @param string nombre del empleado y  double salario.
  * @return
  */
-void Empresa::agrega_asalariado(string nombre, double salario){
+void Empresa::agrega_asalariado(string nombre, double salario) {
 
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
-	emp[nomina] = new Asalariado(nomina, nombre, salario);
+  emp[nomina] = new Asalariado(nomina, nombre, salario);
   nomina++;
 
 }
@@ -214,7 +216,7 @@ void Empresa::agrega_asalariado(string nombre, double salario){
  * @param string nombre del empleado, int horas y double salario.
  * @return
  */
-void Empresa::agrega_por_hora(string nombre, int horas, double salario){
+void Empresa::agrega_por_hora(string nombre, int horas, double salario) {
 
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
   emp[nomina] = new PorHora(nomina, nombre, horas, salario);
@@ -231,7 +233,7 @@ void Empresa::agrega_por_hora(string nombre, int horas, double salario){
  * @param string nombre del empleado, int horas y double salario.
  * @return
  */
-void Empresa::agrega_practicante(string nombre, int horas, double salario){
+void Empresa::agrega_practicante(string nombre, int horas, double salario) {
 
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
   emp[nomina] = new Practicante(nomina, nombre, horas, salario);
