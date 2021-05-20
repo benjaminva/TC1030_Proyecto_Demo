@@ -203,7 +203,6 @@ void Empresa::agrega_asalariado(string nombre, double salario) {
   //new crea el objeto en tiempo de ejecución para usar polimorfismo
   emp[nomina] = new Asalariado(nomina, nombre, salario);
   nomina++;
-
 }
 
 /**
